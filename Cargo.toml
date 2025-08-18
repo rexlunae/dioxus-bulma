@@ -16,6 +16,7 @@ dioxus-router = { version = "0.6", optional = true }
 
 [dev-dependencies]
 dioxus = { version = "0.6", features = ["web"] }
+dioxus-router = "0.6"
 manganis = "0.2"
 
 [[example]]
@@ -32,6 +33,11 @@ required-features = ["web"]
 name = "comprehensive_demo"
 path = "examples/comprehensive_demo.rs"
 required-features = ["web"]
+
+[[example]]
+name = "router_demo"
+path = "examples/router_demo.rs"
+required-features = ["web", "router"]
 
 [features]
 default = []

@@ -2,6 +2,9 @@ use dioxus::prelude::*;
 use crate::theme::{BulmaColor, BulmaSize};
 use crate::utils::build_class;
 
+#[cfg(feature = "router")]
+use dioxus_router::prelude::*;
+
 #[derive(Props, Clone, PartialEq)]
 pub struct ButtonProps {
     #[props(default)]
@@ -26,6 +29,10 @@ pub struct ButtonProps {
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
+    /// If present, generate the button as a Link component using the dioxus router
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     pub children: Element,
 }
 
@@ -55,6 +62,25 @@ pub fn Button(props: ButtonProps) -> Element {
     
     let final_class = build_class(&base_classes, &optional_classes);
     let button_style = props.style.as_deref().unwrap_or("");
+
+    #[cfg(feature = "router")]
+    if let Some(nav_target) = props.to {
+        return rsx! {
+            Link {
+                to: nav_target,
+                class: "{final_class}",
+                style: "{button_style}",
+                onclick: move |evt| {
+                    if !disabled && !loading {
+                        if let Some(handler) = &props.onclick {
+                            handler.call(evt);
+                        }
+                    }
+                },
+                {props.children}
+            }
+        };
+    }
 
     rsx! {
         button {

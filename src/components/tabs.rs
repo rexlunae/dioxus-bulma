@@ -2,6 +2,9 @@ use dioxus::prelude::*;
 use crate::theme::BulmaSize;
 use crate::utils::build_class;
 
+#[cfg(feature = "router")]
+use dioxus_router::prelude::*;
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum TabsStyle {
     Default,
@@ -101,6 +104,10 @@ pub struct TabProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    /// If present, use router navigation instead of href
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -126,6 +133,7 @@ pub fn Tab(props: TabProps) -> Element {
         li {
             class: "{final_class}",
             style: "{tab_style}",
+            
             if let Some(href) = props.href {
                 if !disabled {
                     a {
@@ -138,9 +146,7 @@ pub fn Tab(props: TabProps) -> Element {
                         {props.children}
                     }
                 } else {
-                    span {
-                        {props.children}
-                    }
+                    span { {props.children} }
                 }
             } else {
                 a {

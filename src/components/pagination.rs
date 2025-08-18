@@ -2,6 +2,9 @@ use dioxus::prelude::*;
 use crate::theme::BulmaSize;
 use crate::utils::build_class;
 
+#[cfg(feature = "router")]
+use dioxus_router::prelude::*;
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum PaginationAlignment {
     Left,
@@ -70,6 +73,10 @@ pub struct PaginationPreviousProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    /// If present, use router navigation instead of href
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -85,6 +92,25 @@ pub fn PaginationPrevious(props: PaginationPreviousProps) -> Element {
     let optional_classes = vec![props.class.clone()];
     let final_class = build_class(&base_classes, &optional_classes);
     let style = props.style.as_deref().unwrap_or("");
+
+    #[cfg(feature = "router")]
+    if let Some(nav_target) = props.to {
+        return rsx! {
+            Link {
+                to: nav_target,
+                class: "{final_class}",
+                style: "{style}",
+                onclick: move |evt| {
+                    if !disabled {
+                        if let Some(handler) = &props.onclick {
+                            handler.call(evt);
+                        }
+                    }
+                },
+                {props.children}
+            }
+        };
+    }
 
     rsx! {
         a {
@@ -111,6 +137,10 @@ pub struct PaginationNextProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    /// If present, use router navigation instead of href
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -126,6 +156,25 @@ pub fn PaginationNext(props: PaginationNextProps) -> Element {
     let optional_classes = vec![props.class.clone()];
     let final_class = build_class(&base_classes, &optional_classes);
     let style = props.style.as_deref().unwrap_or("");
+
+    #[cfg(feature = "router")]
+    if let Some(nav_target) = props.to {
+        return rsx! {
+            Link {
+                to: nav_target,
+                class: "{final_class}",
+                style: "{style}",
+                onclick: move |evt| {
+                    if !disabled {
+                        if let Some(handler) = &props.onclick {
+                            handler.call(evt);
+                        }
+                    }
+                },
+                {props.children}
+            }
+        };
+    }
 
     rsx! {
         a {
@@ -179,6 +228,10 @@ pub struct PaginationLinkProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    /// If present, use router navigation instead of href
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -199,6 +252,28 @@ pub fn PaginationLink(props: PaginationLinkProps) -> Element {
     
     let final_class = build_class(&base_classes, &optional_classes);
     let style = props.style.as_deref().unwrap_or("");
+
+    #[cfg(feature = "router")]
+    if let Some(nav_target) = props.to {
+        return rsx! {
+            li {
+                Link {
+                    to: nav_target,
+                    class: "{final_class}",
+                    style: "{style}",
+                    "aria-current": if current { "page" } else { "" },
+                    onclick: move |evt| {
+                        if !disabled {
+                            if let Some(handler) = &props.onclick {
+                                handler.call(evt);
+                            }
+                        }
+                    },
+                    {props.children}
+                }
+            }
+        };
+    }
 
     rsx! {
         li {

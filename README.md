@@ -31,6 +31,17 @@ For web applications, enable the web feature:
 [features]
 default = []
 web = ["dioxus/web"]
+router = ["dioxus-bulma/router"]  # Optional: Enable router integration
+```
+
+### Router Integration
+
+Enable router support for seamless navigation with dioxus-router:
+
+```toml
+[dependencies]
+dioxus-bulma = { version = "0.1.0", features = ["router"] }
+dioxus-router = "0.6"
 ```
 
 ## Getting Started
@@ -186,7 +197,103 @@ fn GridLayout() -> Element {
 }
 ```
 
-### 4. Advanced Components
+### 4. Router Integration
+
+Use components with dioxus-router for client-side navigation:
+
+```rust
+use dioxus::prelude::*;
+use dioxus_router::prelude::*;
+use dioxus_bulma::*;
+
+#[derive(Clone, Routable, Debug, PartialEq)]
+enum Route {
+    #[route("/")]
+    Home {},
+    #[route("/about")]
+    About {},
+    #[route("/contact")]
+    Contact {},
+}
+
+#[component]
+fn App() -> Element {
+    rsx! {
+        BulmaProvider {
+            theme: BulmaTheme::Auto,
+            load_bulma_css: true,
+            
+            Router::<Route> {}
+            
+            // Navigation with router-enabled components
+            Section {
+                Container {
+                    // Button navigation
+                    Field { grouped: true,
+                        Control {
+                            Button {
+                                color: BulmaColor::Primary,
+                                to: Route::Home {},
+                                "Home"
+                            }
+                        }
+                        Control {
+                            Button {
+                                color: BulmaColor::Link,
+                                to: Route::About {},
+                                "About"
+                            }
+                        }
+                        Control {
+                            Button {
+                                color: BulmaColor::Info,
+                                to: Route::Contact {},
+                                "Contact"
+                            }
+                        }
+                    }
+                    
+                    // Breadcrumb navigation
+                    Breadcrumb {
+                        BreadcrumbItem { to: Route::Home {}, "Home" }
+                        BreadcrumbItem { to: Route::About {}, "About" }
+                        BreadcrumbItem { active: true, "Current Page" }
+                    }
+                    
+                    // Content
+                    Outlet::<Route> {}
+                }
+            }
+        }
+    }
+}
+
+#[component]
+fn Home() -> Element {
+    rsx! {
+        Title { size: TitleSize::Is2, "Welcome Home" }
+        Content { "This is the home page." }
+    }
+}
+
+#[component]
+fn About() -> Element {
+    rsx! {
+        Title { size: TitleSize::Is2, "About Us" }
+        Content { "Learn more about our company." }
+    }
+}
+
+#[component] 
+fn Contact() -> Element {
+    rsx! {
+        Title { size: TitleSize::Is2, "Contact" }
+        Content { "Get in touch with us." }
+    }
+}
+```
+
+### 5. Advanced Components
 
 Leverage advanced components like dropdowns and modals:
 
@@ -296,6 +403,22 @@ fn AdvancedDemo() -> Element {
 - `Modal` / `ModalCard` / `ModalCardHead` / `ModalCardBody` / `ModalCardFoot` - Modal dialogs
 - `Navbar` / `NavbarBrand` / `NavbarMenu` / `NavbarItem` - Navigation bars
 - `Panel` / `PanelHeading` / `PanelTabs` / `PanelBlock` / `PanelIcon` - Panel components
+
+### Router-Enabled Components 🚀
+
+When the `router` feature is enabled, these components support the `to` prop for client-side navigation:
+
+- `Button` - Navigate on click instead of form submission
+- `BreadcrumbItem` - Router-aware breadcrumb navigation
+- `DropdownItem` - Navigate from dropdown menus
+- `MenuItem` - Navigate from vertical menus  
+- `PanelBlock` - Navigate from panel items
+- `PaginationPrevious` / `PaginationNext` / `PaginationLink` - Navigate between pages
+
+**Router Props**:
+- `to: Route` - Navigate to route (takes priority over `href`)
+- `href: String` - Fallback for regular link behavior
+- All existing styling and event props work normally
 
 ## Examples
 

@@ -2,6 +2,9 @@ use dioxus::prelude::*;
 use crate::theme::BulmaColor;
 use crate::utils::build_class;
 
+#[cfg(feature = "router")]
+use dioxus_router::prelude::*;
+
 #[derive(Props, Clone, PartialEq)]
 pub struct PanelProps {
     #[props(default)]
@@ -91,6 +94,10 @@ pub struct PanelBlockProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    /// If present, use router navigation instead of href
+    #[cfg(feature = "router")]
+    #[props(default)]
+    pub to: Option<NavigationTarget>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -110,6 +117,23 @@ pub fn PanelBlock(props: PanelBlockProps) -> Element {
     
     let final_class = build_class(&base_classes, &optional_classes);
     let block_style = props.style.as_deref().unwrap_or("");
+
+    #[cfg(feature = "router")]
+    if let Some(nav_target) = props.to {
+        return rsx! {
+            Link {
+                to: nav_target,
+                class: "{final_class}",
+                style: "{block_style}",
+                onclick: move |evt| {
+                    if let Some(handler) = &props.onclick {
+                        handler.call(evt);
+                    }
+                },
+                {props.children}
+            }
+        };
+    }
 
     rsx! {
         if let Some(href) = props.href {

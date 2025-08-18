@@ -1,0 +1,39 @@
+[package]
+name = "dioxus-bulma"
+version = "0.1.0"
+edition = "2021"
+description = "Bulma CSS components for Dioxus"
+license = "MIT OR Apache-2.0"
+authors = ["Claude Code"]
+repository = "https://github.com/your-username/dioxus-bulma"
+readme = "README.md"
+keywords = ["dioxus", "bulma", "components", "ui", "web"]
+categories = ["gui", "web-programming"]
+
+[dependencies]
+dioxus = "0.6"
+
+[dev-dependencies]
+dioxus = { version = "0.6", features = ["web"] }
+manganis = "0.2"
+
+[[example]]
+name = "demo"
+path = "examples/demo.rs"
+required-features = ["web"]
+
+[features]
+default = []
+web = ["dioxus/web"]
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"

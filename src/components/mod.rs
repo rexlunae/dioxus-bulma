@@ -42,6 +42,8 @@ pub mod panel;
 pub mod tabs;
 
 // Re-export all implemented components
+
+// Layout Components
 pub use container::*;
 pub use columns::*;
 pub use section::*;
@@ -49,6 +51,8 @@ pub use hero::*;
 pub use level::*;
 pub use media::*;
 pub use tile::*;
+
+// Elements
 pub use button::*;
 pub use content::*;
 pub use delete::*;
@@ -59,6 +63,8 @@ pub use progress::*;
 pub use table::*;
 pub use tag::*;
 pub use title::*;
+
+// Form Components
 pub use field::*;
 pub use control::*;
 pub use input::*;
@@ -67,6 +73,8 @@ pub use select::*;
 pub use checkbox::*;
 pub use radio::*;
 pub use file::*;
+
+// Components
 pub use breadcrumb::*;
 pub use card::*;
 pub use dropdown::*;

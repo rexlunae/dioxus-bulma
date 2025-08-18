@@ -22,6 +22,11 @@ name = "demo"
 path = "examples/demo.rs"
 required-features = ["web"]
 
+[[example]]
+name = "showcase"
+path = "examples/showcase.rs"
+required-features = ["web"]
+
 [features]
 default = []
 web = ["dioxus/web"]

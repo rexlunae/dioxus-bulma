@@ -13,5 +13,5 @@ pub mod utils;
 pub use components::*;
 pub use theme::*;
 
-// Re-export dioxus for convenience
-pub use dioxus::prelude::*;
+// Re-export dioxus for convenience, but avoid ImageSize conflict
+pub use dioxus::prelude::{component, Element, Props, rsx, EventHandler, MouseEvent, FormEvent};

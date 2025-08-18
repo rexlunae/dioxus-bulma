@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-use crate::theme::BulmaSize;
 use crate::utils::build_class;
 
 #[derive(Debug, Clone, Copy, PartialEq)]

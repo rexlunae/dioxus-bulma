@@ -60,29 +60,39 @@ fn App() -> Element {
 ## Available Components
 
 ### Layout
-- `Container` - Responsive container
-- `Section` - Page sections 
-- `Columns` / `Column` - Flexible grid system
+- `Container` - Responsive container with breakpoint options
+- `Section` - Page sections with size variants
+- `Columns` / `Column` - Flexible grid system with responsive sizing
+- `Hero` / `HeroBody` / `HeroHead` / `HeroFoot` - Hero banner component
 
 ### Elements
-- `Button` - Buttons with various styles and states
-- `Title` / `Subtitle` - Typography components
-- `Notification` - Alert notifications
-- `Input` - Form inputs
+- `Button` - Full-featured buttons with colors, sizes, and states
+- `Title` / `Subtitle` - Typography components with heading levels
+- `Notification` - Dismissible alert notifications
+- `Tag` / `Tags` - Label and tag components with colors and variants
 
 ### Form Components
-- `Input` - Text inputs with validation states
-- More form components coming soon...
+- `Input` - Text inputs with validation states and various types
+- `Field` - Form field wrapper with grouping options
+- `Control` - Form control wrapper with icon support
+- `Label` - Form labels
+- `Help` - Form help text with color states
 
 ### Components
-- More advanced components in development...
+- `Card` / `CardHeader` / `CardContent` / `CardFooter` - Card components
+- `Modal` / `ModalCard` / `ModalCardHead` / `ModalCardBody` / `ModalCardFoot` - Modal dialogs
+- `Navbar` / `NavbarBrand` / `NavbarMenu` / `NavbarItem` - Navigation bars
 
-## Example
+## Examples
 
-Run the demo to see all components in action:
+Run the examples to see all components in action:
 
 ```bash
+# Basic demo
 cargo run --example demo --features web
+
+# Comprehensive showcase
+cargo run --example showcase --features web
 ```
 
 ## Component Props
@@ -131,17 +141,18 @@ BulmaProvider {
 This library is under active development. Core components are functional, with more advanced components being added regularly.
 
 ### Implemented ✅
-- Button (full-featured)
-- Container & layout components  
-- Typography (Title/Subtitle)
-- Basic form inputs
-- Notifications
+- Button (full-featured with all variants)
+- Layout components (Container, Columns, Section, Hero)
+- Typography (Title/Subtitle with proper heading levels)
+- Form components (Input, Field, Control, Label, Help)
+- UI components (Card, Modal, Navbar, Notification, Tag)
+- Theme system with BulmaProvider
 
 ### In Progress 🚧
-- Advanced form components
-- Navigation components
-- Modal & overlay components
-- Data display components
+- Advanced form components (Select, Textarea, Checkbox, Radio)
+- Data display components (Table, Image, Progress)
+- Navigation components (Breadcrumb, Tabs, Pagination)
+- Overlay components (Dropdown, Menu, Tooltip)
 
 ## License
 

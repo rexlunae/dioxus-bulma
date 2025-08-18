@@ -36,7 +36,7 @@ fn App() -> Element {
                             size: ColumnSize::Half,
                             div { class: "box",
                                 Title { size: TitleSize::Is4, "Counter Example" }
-                                p { "Count: {count}" }
+                                Content { "Count: {count}" }
                                 div { class: "buttons",
                                     Button {
                                         color: BulmaColor::Primary,
@@ -62,9 +62,9 @@ fn App() -> Element {
                             size: ColumnSize::Half,
                             div { class: "box",
                                 Title { size: TitleSize::Is4, "Input Example" }
-                                div { class: "field",
-                                    label { class: "label", "Message" }
-                                    div { class: "control",
+                                Field {
+                                    Label { "Message" }
+                                    Control {
                                         Input {
                                             value: message.read().clone(),
                                             placeholder: "Enter a message...",
@@ -74,7 +74,7 @@ fn App() -> Element {
                                         }
                                     }
                                 }
-                                p { "Your message: {message}" }
+                                Content { "Your message: {message}" }
                             }
                         }
                     }

@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
 use dioxus_bulma::*;
+use dioxus_bulma::ImageSize as BulmaImageSize;
 
 fn main() {
     launch(App);
@@ -49,20 +50,28 @@ fn App() -> Element {
             Section {
                 Container {
                     // Tab Navigation
-                    div { class: "tabs is-boxed is-large",
-                        ul {
-                            li { class: if current_tab() == "buttons" { "is-active" } else { "" },
-                                a { onclick: move |_| current_tab.set("buttons".to_string()), "Buttons" }
-                            }
-                            li { class: if current_tab() == "forms" { "is-active" } else { "" },
-                                a { onclick: move |_| current_tab.set("forms".to_string()), "Forms" }
-                            }
-                            li { class: if current_tab() == "layout" { "is-active" } else { "" },
-                                a { onclick: move |_| current_tab.set("layout".to_string()), "Layout" }
-                            }
-                            li { class: if current_tab() == "components" { "is-active" } else { "" },
-                                a { onclick: move |_| current_tab.set("components".to_string()), "Components" }
-                            }
+                    Tabs {
+                        style: TabsStyle::Boxed,
+                        size: BulmaSize::Large,
+                        Tab {
+                            active: current_tab() == "buttons",
+                            onclick: move |_| current_tab.set("buttons".to_string()),
+                            "Buttons"
+                        }
+                        Tab {
+                            active: current_tab() == "forms",
+                            onclick: move |_| current_tab.set("forms".to_string()),
+                            "Forms"
+                        }
+                        Tab {
+                            active: current_tab() == "layout",
+                            onclick: move |_| current_tab.set("layout".to_string()),
+                            "Layout"
+                        }
+                        Tab {
+                            active: current_tab() == "components",
+                            onclick: move |_| current_tab.set("components".to_string()),
+                            "Components"
                         }
                     }
 
@@ -84,7 +93,7 @@ fn App() -> Element {
                 ModalCard {
                     ModalCardHead {
                         onclose: move |_| show_modal.set(false),
-                        p { class: "modal-card-title", "Example Modal" }
+                        Title { size: TitleSize::Is4, "Example Modal" }
                     }
                     ModalCardBody {
                         p { "This is an example modal built with the Modal component." }
@@ -344,31 +353,31 @@ fn ComponentsDemo(mut show_modal: Signal<bool>) -> Element {
                         }
                     }
                     CardFooter {
-                        a { class: "card-footer-item", href: "#", "Save" }
-                        a { class: "card-footer-item", href: "#", "Edit" }
-                        a { class: "card-footer-item", href: "#", "Delete" }
+                        CardFooterItem { href: "#", "Save" }
+                        CardFooterItem { href: "#", "Edit" }
+                        CardFooterItem { href: "#", "Delete" }
                     }
                 }
             }
             Column { size: ColumnSize::Half,
                 Card {
                     CardContent {
-                        div { class: "media",
-                            div { class: "media-left",
-                                figure { class: "image is-48x48",
+                        Media {
+                            MediaLeft {
+                                Image { size: BulmaImageSize::Is48x48,
                                     div { 
                                         class: "has-background-primary-light is-flex is-align-items-center is-justify-content-center",
                                         style: "width: 48px; height: 48px; border-radius: 6px;",
-                                        span { class: "icon is-large has-text-primary", "📦" }
+                                        Icon { class: "has-text-primary", "📦" }
                                     }
                                 }
                             }
-                            div { class: "media-content",
-                                p { class: "title is-4", "Media Card" }
-                                p { class: "subtitle is-6", "With media object" }
+                            MediaContent {
+                                Title { size: TitleSize::Is4, "Media Card" }
+                                Subtitle { size: TitleSize::Is6, "With media object" }
                             }
                         }
-                        div { class: "content",
+                        Content {
                             "This card uses the media object pattern for structured content layout."
                         }
                     }

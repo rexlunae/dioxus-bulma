@@ -1,11 +1,11 @@
 [package]
 name = "dioxus-bulma"
-version = "0.1.0"
-edition = "2021"
+version = "0.1.1"
+edition = "2024"
 description = "Bulma CSS components for Dioxus"
 license = "MIT OR Apache-2.0"
 authors = ["Claude Code"]
-repository = "https://github.com/your-username/dioxus-bulma"
+repository = "https://github.com/rexlunae/dioxus-bulma"
 readme = "README.md"
 keywords = ["dioxus", "bulma", "components", "ui", "web"]
 categories = ["gui", "web-programming"]
@@ -17,7 +17,7 @@ dioxus-router = { version = "0.6", optional = true }
 [dev-dependencies]
 dioxus = { version = "0.6", features = ["web"] }
 dioxus-router = "0.6"
-manganis = "0.2"
+manganis = "0.6"
 
 [[example]]
 name = "demo"

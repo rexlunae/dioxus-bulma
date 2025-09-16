@@ -24,21 +24,6 @@ name = "demo"
 path = "examples/demo.rs"
 required-features = ["web"]
 
-[[example]]
-name = "showcase"
-path = "examples/showcase.rs"
-required-features = ["web"]
-
-[[example]]
-name = "comprehensive_demo"
-path = "examples/comprehensive_demo.rs"
-required-features = ["web"]
-
-[[example]]
-name = "router_demo"
-path = "examples/router_demo.rs"
-required-features = ["web", "router"]
-
 [features]
 default = []
 web = ["dioxus/web"]

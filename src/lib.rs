@@ -6,6 +6,7 @@
 //! Bulma CSS framework, designed to work seamlessly with Dioxus.
 
 pub mod components;
+pub mod prelude;
 pub mod theme;
 pub mod utils;
 

@@ -9,6 +9,7 @@ pub mod tile;
 
 // Elements
 pub mod button;
+pub mod buttons;
 pub mod content;
 pub mod delete;
 pub mod icon;
@@ -54,6 +55,7 @@ pub use tile::*;
 
 // Elements
 pub use button::*;
+pub use buttons::*;
 pub use content::*;
 pub use delete::*;
 pub use icon::*;

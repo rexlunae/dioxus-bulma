@@ -62,7 +62,7 @@ This is a fully functional component library that bridges Dioxus (a React-like R
 **Layout Components:**
 - `Container` - Responsive layout container
 - `Columns`/`Column` - Flexible grid system with responsive sizing
-- `Section` - Layout section with size variants  
+- `Section` - Layout section with size variants
 - `Hero`/`HeroBody`/`HeroHead`/`HeroFoot` - Hero section components
 - `Level`/`LevelLeft`/`LevelRight`/`LevelItem` - Horizontal level layouts
 - `Media`/`MediaLeft`/`MediaContent`/`MediaRight` - Media object component

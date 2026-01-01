@@ -21,8 +21,8 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-dioxus-bulma = "0.1.0"
-dioxus = "0.6"
+dioxus-bulma = "0.7"
+dioxus = "0.7"
 ```
 
 For web applications, enable the web feature:
@@ -40,9 +40,13 @@ Enable router support for seamless navigation with dioxus-router:
 
 ```toml
 [dependencies]
-dioxus-bulma = { version = "0.1.0", features = ["router"] }
-dioxus-router = "0.6"
+dioxus-bulma = { version = "0.7", features = ["router"] }
+dioxus-router = "0.7"
 ```
+
+## Dioxus 0.7 Compatibility
+
+This library is fully compatible with Dioxus 0.7. If you're upgrading from Dioxus 0.6, see the [Upgrade Guide](#upgrade-guide) section below.
 
 ## Getting Started
 
@@ -52,7 +56,8 @@ Start by wrapping your app with `BulmaProvider` to enable theme support and CSS 
 
 ```rust
 use dioxus::prelude::*;
-use dioxus_bulma::*;
+use dioxus_bulma::prelude::*;
+use dioxus_bulma::components::{Title, Subtitle};
 
 fn main() {
     launch(App);
@@ -64,16 +69,15 @@ fn App() -> Element {
         BulmaProvider {
             theme: BulmaTheme::Auto,      // Auto-detect system theme
             load_bulma_css: true,         // Auto-load Bulma CSS from CDN
-            
+
             Section {
                 Container {
                     Title { size: TitleSize::Is1, "Hello, Dioxus Bulma!" }
-                    Subtitle { size: TitleSize::Is4, "Build beautiful web apps with Rust" }
-                    
+                    Subtitle { "Build beautiful web apps with Rust" }
+
                     Button {
                         color: BulmaColor::Primary,
                         size: BulmaSize::Large,
-                        onclick: |_| println!("Button clicked!"),
                         "Get Started"
                     }
                 }
@@ -83,7 +87,27 @@ fn App() -> Element {
 }
 ```
 
-### 2. Building Forms
+### 2. Import Patterns
+
+The library provides two import patterns:
+
+**Recommended: Using the prelude**
+```rust
+use dioxus::prelude::*;
+use dioxus_bulma::prelude::*;
+use dioxus_bulma::components::{Title, Subtitle}; // Import Title/Subtitle explicitly
+```
+
+**Alternative: Component module**
+```rust
+use dioxus::prelude::*;
+use dioxus_bulma::prelude::*;
+use dioxus_bulma::components::*;
+```
+
+> **Note**: `Title` and `Subtitle` must be explicitly imported to avoid conflicts with Dioxus 0.7's built-in document components.
+
+### 3. Building Forms
 
 Create interactive forms with validation:
 
@@ -92,7 +116,7 @@ Create interactive forms with validation:
 fn ContactForm() -> Element {
     let mut name = use_signal(String::new);
     let mut email = use_signal(String::new);
-    
+
     rsx! {
         Card {
             CardHeader { CardHeaderTitle { "Contact Us" } }
@@ -108,17 +132,17 @@ fn ContactForm() -> Element {
                         }
                     }
                 }
-                
+
                 Field {
                     Label { "Email" }
                     Control {
                         Input {
                             input_type: InputType::Email,
                             placeholder: "Enter your email",
-                            color: if email().contains('@') { 
-                                Some(BulmaColor::Success) 
-                            } else { 
-                                None 
+                            color: if email().contains('@') {
+                                Some(BulmaColor::Success)
+                            } else {
+                                None
                             },
                             value: email(),
                             oninput: move |evt: FormEvent| email.set(evt.value())
@@ -126,7 +150,7 @@ fn ContactForm() -> Element {
                     }
                     Help { color: BulmaColor::Info, "We'll never share your email" }
                 }
-                
+
                 Field { grouped: true,
                     Control {
                         Button {
@@ -138,12 +162,12 @@ fn ContactForm() -> Element {
                         }
                     }
                     Control {
-                        Button { 
+                        Button {
                             onclick: move |_| {
                                 name.set(String::new());
                                 email.set(String::new());
                             },
-                            "Clear" 
+                            "Clear"
                         }
                     }
                 }
@@ -164,7 +188,7 @@ fn GridLayout() -> Element {
         Container {
             Columns {
                 multiline: true,
-                
+
                 Column { size: ColumnSize::Half,
                     Card {
                         CardContent {
@@ -173,7 +197,7 @@ fn GridLayout() -> Element {
                         }
                     }
                 }
-                
+
                 Column { size: ColumnSize::OneQuarter,
                     Card {
                         CardContent {
@@ -182,7 +206,7 @@ fn GridLayout() -> Element {
                         }
                     }
                 }
-                
+
                 Column { size: ColumnSize::OneQuarter,
                     Card {
                         CardContent {
@@ -222,9 +246,9 @@ fn App() -> Element {
         BulmaProvider {
             theme: BulmaTheme::Auto,
             load_bulma_css: true,
-            
+
             Router::<Route> {}
-            
+
             // Navigation with router-enabled components
             Section {
                 Container {
@@ -252,14 +276,14 @@ fn App() -> Element {
                             }
                         }
                     }
-                    
+
                     // Breadcrumb navigation
                     Breadcrumb {
                         BreadcrumbItem { to: Route::Home {}, "Home" }
                         BreadcrumbItem { to: Route::About {}, "About" }
                         BreadcrumbItem { active: true, "Current Page" }
                     }
-                    
+
                     // Content
                     Outlet::<Route> {}
                 }
@@ -284,7 +308,7 @@ fn About() -> Element {
     }
 }
 
-#[component] 
+#[component]
 fn Contact() -> Element {
     rsx! {
         Title { size: TitleSize::Is2, "Contact" }
@@ -302,7 +326,7 @@ Leverage advanced components like dropdowns and modals:
 fn AdvancedDemo() -> Element {
     let mut show_modal = use_signal(|| false);
     let mut dropdown_active = use_signal(|| false);
-    
+
     rsx! {
         // Dropdown
         Dropdown {
@@ -318,14 +342,14 @@ fn AdvancedDemo() -> Element {
                 DropdownItem { active: true, "Active item" }
             }
         }
-        
+
         // Modal trigger
         Button {
             color: BulmaColor::Info,
             onclick: move |_| show_modal.set(true),
             "Open Modal"
         }
-        
+
         // Modal
         Modal {
             active: show_modal(),
@@ -359,7 +383,7 @@ fn AdvancedDemo() -> Element {
 
 ### Layout Components
 - `Container` - Responsive container with breakpoint options
-- `Section` - Page sections with size variants  
+- `Section` - Page sections with size variants
 - `Columns` / `Column` - Flexible grid system with responsive sizing and offsets
 - `Hero` / `HeroBody` / `HeroHead` / `HeroFoot` - Hero banner components with sizes
 - `Level` / `LevelLeft` / `LevelRight` / `LevelItem` - Horizontal level layout
@@ -411,7 +435,7 @@ When the `router` feature is enabled, these components support the `to` prop for
 - `Button` - Navigate on click instead of form submission
 - `BreadcrumbItem` - Router-aware breadcrumb navigation
 - `DropdownItem` - Navigate from dropdown menus
-- `MenuItem` - Navigate from vertical menus  
+- `MenuItem` - Navigate from vertical menus
 - `PanelBlock` - Navigate from panel items
 - `PaginationPrevious` / `PaginationNext` / `PaginationLink` - Navigate between pages
 
@@ -446,7 +470,7 @@ Each example demonstrates different aspects:
 
 All components support Bulma's color system:
 ```rust
-BulmaColor::Primary | Link | Info | Success | Warning | Danger | 
+BulmaColor::Primary | Link | Info | Success | Warning | Danger |
            White | Light | Dark | Black | Text | Ghost
 ```
 
@@ -460,7 +484,7 @@ BulmaSize::Small | Normal | Medium | Large
 Button {
     color: BulmaColor::Primary,      // Color scheme
     size: BulmaSize::Medium,         // Button size
-    outlined: true,                  // Outlined style  
+    outlined: true,                  // Outlined style
     rounded: true,                   // Rounded corners
     loading: false,                  // Loading state
     disabled: false,                 // Disabled state
@@ -507,7 +531,7 @@ Columns {
     centered: false,                 // Center columns
     vcentered: false,                // Vertical centering
     mobile: false,                   // Force on mobile
-    
+
     Column {
         size: ColumnSize::Half,      // Fractional sizing
         offset: ColumnSize::OneQuarter, // Column offset
@@ -610,6 +634,75 @@ cd dioxus-bulma
 cargo check
 cargo run --example comprehensive_demo --features web
 ```
+
+## Upgrade Guide: Dioxus 0.6 to 0.7
+
+If you're upgrading from Dioxus 0.6, follow these steps to update your dioxus-bulma integration:
+
+### 1. Update Dependencies
+
+```toml
+[dependencies]
+dioxus = "0.7"
+dioxus-bulma = "0.7"
+dioxus-router = "0.7"  # if using router
+```
+
+### 2. Update Imports
+
+**Before (Dioxus 0.6):**
+```rust
+use dioxus::prelude::*;
+use dioxus_bulma::*;
+```
+
+**After (Dioxus 0.7):**
+```rust
+use dioxus::prelude::*;
+use dioxus_bulma::prelude::*;
+use dioxus_bulma::components::{Title, Subtitle};  // Explicit imports to avoid conflicts
+```
+
+### 3. Hooks API Changes
+
+Dioxus 0.7 renamed `use_state` to `use_signal`:
+
+**Before:**
+```rust
+let mut count = use_state(|| 0);
+```
+
+**After:**
+```rust
+let mut count = use_signal(|| 0);
+```
+
+### 4. Children Prop Changes
+
+In Dioxus 0.7, the `children` prop in component props is required (no longer optional):
+
+**Before:**
+```rust
+#[derive(Props, Clone, PartialEq)]
+pub struct MyComponentProps {
+    #[props(default)]
+    pub children: Option<Element>,
+}
+```
+
+**After:**
+```rust
+#[derive(Props, Clone, PartialEq)]
+pub struct MyComponentProps {
+    pub children: Element,  // Required, no default
+}
+```
+
+### Component Naming Conflicts
+
+Dioxus 0.7 introduces built-in document components (`Title`, `Subtitle`) that may conflict with dioxus-bulma components. Always import them explicitly from the components module to ensure you're using the Bulma versions.
+
+For more detailed information, refer to the [Dioxus 0.7 Release Notes](https://github.com/dioxuslabs/dioxus/releases/tag/v0.7.0).
 
 ## License
 

@@ -11,12 +11,10 @@ keywords = ["dioxus", "bulma", "components", "ui", "web"]
 categories = ["gui", "web-programming"]
 
 [dependencies]
-dioxus = "0.7"
-dioxus-router = { version = "0.7", optional = true }
+dioxus = { version = "0.7" }
 
 [dev-dependencies]
 dioxus = { version = "0.7", features = ["web"] }
-dioxus-router = "0.7"
 manganis = "0.7"
 
 [[example]]
@@ -27,7 +25,7 @@ required-features = ["web"]
 [features]
 default = []
 web = ["dioxus/web"]
-router = ["dioxus-router"]
+router = ["dioxus/router"]
 
 [profile]
 

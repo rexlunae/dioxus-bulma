@@ -1,8 +1,5 @@
-use dioxus::prelude::*;
 use crate::utils::build_class;
-
-#[cfg(feature = "router")]
-use dioxus_router::prelude::*;
+use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct MenuProps {

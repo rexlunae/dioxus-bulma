@@ -227,7 +227,6 @@ Use components with dioxus-router for client-side navigation:
 
 ```rust
 use dioxus::prelude::*;
-use dioxus_router::prelude::*;
 use dioxus_bulma::*;
 
 #[derive(Clone, Routable, Debug, PartialEq)]

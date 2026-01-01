@@ -16,8 +16,7 @@ pub struct ProgressProps {
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
-    #[props(default)]
-    pub children: Option<Element>,
+    pub children: Element,
 }
 
 #[component]
@@ -42,8 +41,8 @@ pub fn Progress(props: ProgressProps) -> Element {
             style: "{progress_style}",
             value: value_str.as_deref(),
             max: "{max_str}",
-            if let Some(children) = props.children {
-                {children}
+            if props.value.is_some() {
+                {props.children}
             } else if let Some(value) = props.value {
                 "{value}%"
             }

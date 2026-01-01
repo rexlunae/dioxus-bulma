@@ -1,4 +1,4 @@
-use dioxus_bulma::*;
+use dioxus_bulma::prelude::*;
 use dioxus::prelude::*;
 
 #[test]

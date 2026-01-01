@@ -1,6 +1,14 @@
 use dioxus::prelude::*;
-use dioxus_bulma::*;
-use dioxus_bulma::ImageSize as BulmaImageSize;
+use dioxus_bulma::prelude::*;
+use dioxus_bulma::components::{
+    Title, Subtitle, TitleSize,
+    TabsAlignment, TabsStyle,
+    PaginationAlignment,
+    InputType,
+    ColumnSize,
+    ImageSize,
+    Label, Help,
+};
 
 fn main() {
     launch(App);
@@ -741,7 +749,7 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
                             Media {
                                 MediaLeft {
                                     Image { 
-                                        size: BulmaImageSize::Is64x64,
+                                        size: ImageSize::Is64x64,
                                         div {
                                             class: "has-background-primary has-text-white is-flex is-align-items-center is-justify-content-center",
                                             style: "width: 64px; height: 64px; border-radius: 6px; font-size: 24px;",

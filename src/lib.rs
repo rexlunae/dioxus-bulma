@@ -4,14 +4,20 @@
 //! 
 //! This library provides a comprehensive set of UI components styled with 
 //! Bulma CSS framework, designed to work seamlessly with Dioxus.
+//!
+//! ## Usage
+//!
+//! ```rust
+//! use dioxus::prelude::*;
+//! use dioxus_bulma::prelude::*;
+//! ```
 
 pub mod components;
 pub mod prelude;
 pub mod theme;
 pub mod utils;
 
-// Re-export commonly used components
-pub use components::*;
+// Re-export theme components at top level (no naming conflicts)
 pub use theme::*;
 
 // Re-export dioxus for convenience, but avoid ImageSize conflict

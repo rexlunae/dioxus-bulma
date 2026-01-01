@@ -26,7 +26,7 @@ pub use crate::components::{
 // Elements
 pub use crate::components::{
     Button, Buttons, ButtonsAlignment,
-    Content, Delete, Icon, Image, Notification, Progress, 
+    Content, Delete, Icon, Image, Notification, Progress,
     Table, TableContainer,
     Tag, Tags
     // Note: Title and Subtitle are NOT included to avoid conflicts with dioxus_document

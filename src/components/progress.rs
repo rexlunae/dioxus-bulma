@@ -22,14 +22,14 @@ pub struct ProgressProps {
 #[component]
 pub fn Progress(props: ProgressProps) -> Element {
     let size = props.size.unwrap_or_default();
-    
+
     let base_classes = vec!["progress"];
     let optional_classes = vec![
         props.color.map(|c| format!("is-{}", c.as_str())),
         if size != BulmaSize::Normal { Some(size.as_class().to_string()) } else { None },
         props.class.clone(),
     ];
-    
+
     let final_class = build_class(&base_classes, &optional_classes);
     let progress_style = props.style.as_deref().unwrap_or("");
     let value_str = props.value.map(|v| v.to_string());

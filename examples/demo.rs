@@ -30,7 +30,7 @@ fn App() -> Element {
         BulmaProvider {
             theme: BulmaTheme::Auto,
             load_bulma_css: true,
-            
+
             // Hero Section
             Hero {
                 color: BulmaColor::Primary,
@@ -184,7 +184,7 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Button Showcase
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Buttons" }
-                
+
                 Card {
                     CardContent {
                         Title { size: TitleSize::Is4, "Button Colors" }
@@ -220,7 +220,7 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Typography
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Typography" }
-                
+
                 Card {
                     CardContent {
                         Title { size: TitleSize::Is1, "Title Is1 - Main Heading" }
@@ -229,9 +229,9 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
                         Title { size: TitleSize::Is4, "Title Is4 - Component Title" }
                         Title { size: TitleSize::Is5, "Title Is5 - Small Title" }
                         Title { size: TitleSize::Is6, "Title Is6 - Smallest Title" }
-                        
+
                         hr {}
-                        
+
                         Subtitle { size: TitleSize::Is3, "Subtitle Is3" }
                         Subtitle { size: TitleSize::Is4, "Subtitle Is4" }
                         Subtitle { size: TitleSize::Is5, "Subtitle Is5" }
@@ -243,7 +243,7 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Tags
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Tags" }
-                
+
                 Card {
                     CardContent {
                         Title { size: TitleSize::Is4, "Tag Colors & Variants" }
@@ -254,7 +254,7 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
                             Tag { color: BulmaColor::Warning, "Warning" }
                             Tag { color: BulmaColor::Danger, "Danger" }
                         }
-                        
+
                         Tags {
                             Tag { color: BulmaColor::Primary, light: true, "Light Primary" }
                             Tag { color: BulmaColor::Info, rounded: true, "Rounded" }
@@ -268,25 +268,25 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Notifications
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Notifications" }
-                
+
                 Card {
                     CardContent {
                         Notification {
                             color: BulmaColor::Primary,
                             "Primary notification - great for highlighting important information"
                         }
-                        
+
                         Notification {
                             color: BulmaColor::Success,
                             light: true,
                             "Success notification with light styling - perfect for confirmation messages"
                         }
-                        
+
                         Notification {
                             color: BulmaColor::Warning,
                             "Warning notification - use for cautionary messages"
                         }
-                        
+
                         Notification {
                             color: BulmaColor::Danger,
                             light: true,
@@ -299,36 +299,36 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Progress bars
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Progress" }
-                
+
                 Card {
                     CardContent {
-                        Progress { 
-                            color: BulmaColor::Primary, 
-                            value: 15.0, 
+                        Progress {
+                            color: BulmaColor::Primary,
+                            value: 15.0,
                             max: 100.0,
                             "15%"
                         }
-                        Progress { 
-                            color: BulmaColor::Info, 
-                            value: 30.0, 
+                        Progress {
+                            color: BulmaColor::Info,
+                            value: 30.0,
                             max: 100.0,
                             "30%"
                         }
-                        Progress { 
-                            color: BulmaColor::Success, 
-                            value: 45.0, 
+                        Progress {
+                            color: BulmaColor::Success,
+                            value: 45.0,
                             max: 100.0,
                             "45%"
                         }
-                        Progress { 
-                            color: BulmaColor::Warning, 
-                            value: 60.0, 
+                        Progress {
+                            color: BulmaColor::Warning,
+                            value: 60.0,
                             max: 100.0,
                             "60%"
                         }
-                        Progress { 
-                            color: BulmaColor::Danger, 
-                            value: 90.0, 
+                        Progress {
+                            color: BulmaColor::Danger,
+                            value: 90.0,
                             max: 100.0,
                             "90%"
                         }
@@ -339,7 +339,7 @@ fn ElementsSection(counter: Signal<i32>) -> Element {
             // Table
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Table" }
-                
+
                 Card {
                     CardContent {
                         Table {
@@ -420,7 +420,7 @@ fn FormsSection(name: Signal<String>, email: Signal<String>, message: Signal<Str
                                         input_type: InputType::Email,
                                         placeholder: "Enter your email",
                                         value: email(),
-                                        color: if !email().is_empty() && 
+                                        color: if !email().is_empty() &&
                                                (!email().contains('@') || !email().contains('.')) {
                                             Some(BulmaColor::Danger)
                                         } else if email().contains('@') && email().contains('.') {
@@ -431,7 +431,7 @@ fn FormsSection(name: Signal<String>, email: Signal<String>, message: Signal<Str
                                         oninput: move |evt: FormEvent| email.set(evt.value())
                                     }
                                 }
-                                if !email().is_empty() && 
+                                if !email().is_empty() &&
                                    (!email().contains('@') || !email().contains('.')) {
                                     Help { color: BulmaColor::Danger, "Please enter a valid email address" }
                                 } else if email().contains('@') && email().contains('.') {
@@ -497,7 +497,7 @@ fn FormsSection(name: Signal<String>, email: Signal<String>, message: Signal<Str
                                 }
                                 Control {
                                     Radio {
-                                        name: "contact_method", 
+                                        name: "contact_method",
                                         value: "phone",
                                         checked: contact_method() == "phone",
                                         onchange: move |_| contact_method.set("phone".to_string()),
@@ -589,7 +589,7 @@ fn LayoutSection() -> Element {
             Title { size: TitleSize::Is3, "Container" }
             div { class: "box",
                 Container {
-                    Content { 
+                    Content {
                         "This content is wrapped in a Container component, which provides responsive max-width "
                         "and centers content on larger screens."
                     }
@@ -599,7 +599,7 @@ fn LayoutSection() -> Element {
             // Columns System
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Columns & Grid System" }
-                
+
                 Card {
                     CardContent {
                         Title { size: TitleSize::Is4, "Basic Columns" }
@@ -665,21 +665,21 @@ fn LayoutSection() -> Element {
             // Section
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Section" }
-                
+
                 Section {
                     div { class: "box has-background-info-light",
                         Title { size: TitleSize::Is4, "Small Section" }
                         Content { "This is a small section with reduced padding." }
                     }
                 }
-                
+
                 Section {
                     div { class: "box has-background-success-light",
                         Title { size: TitleSize::Is4, "Medium Section" }
                         Content { "This is a medium section with standard padding." }
                     }
                 }
-                
+
                 Section {
                     div { class: "box has-background-warning-light",
                         Title { size: TitleSize::Is4, "Large Section" }
@@ -691,7 +691,7 @@ fn LayoutSection() -> Element {
             // Hero
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Hero" }
-                
+
                 Hero {
                     color: BulmaColor::Primary,
                     size: BulmaSize::Medium,
@@ -720,7 +720,7 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
             Title { size: TitleSize::Is3, "Cards" }
             Columns {
                 multiline: true,
-                
+
                 Column { size: ColumnSize::Half,
                     Card {
                         CardHeader {
@@ -742,13 +742,13 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
                         }
                     }
                 }
-                
+
                 Column { size: ColumnSize::Half,
                     Card {
                         CardContent {
                             Media {
                                 MediaLeft {
-                                    Image { 
+                                    Image {
                                         size: ImageSize::Is64x64,
                                         div {
                                             class: "has-background-primary has-text-white is-flex is-align-items-center is-justify-content-center",
@@ -776,11 +776,11 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
             // Modal
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Modal" }
-                
+
                 Card {
                     CardContent {
                         Content { "Modals provide focused interactions without navigating away from the current page." }
-                        
+
                         Button {
                             color: BulmaColor::Primary,
                             size: BulmaSize::Large,
@@ -794,11 +794,11 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
             // Dropdown
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Dropdown" }
-                
+
                 Card {
                     CardContent {
                         Content { "Dropdown menus provide contextual actions and navigation options." }
-                        
+
                         Dropdown {
                             active: dropdown_active(),
                             DropdownTrigger {
@@ -806,7 +806,7 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
                                 Button {
                                     color: BulmaColor::Primary,
                                     "Dropdown Menu"
-                                    span { class: "icon is-small ml-2", 
+                                    span { class: "icon is-small ml-2",
                                         if dropdown_active() { "▲" } else { "▼" }
                                     }
                                 }
@@ -829,7 +829,7 @@ fn ComponentsSection(show_modal: Signal<bool>, dropdown_active: Signal<bool>) ->
             // Message
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Message" }
-                
+
                 if message_visible() {
                     Message {
                         color: BulmaColor::Info,
@@ -887,7 +887,7 @@ fn NavigationSection(current_page: Signal<i32>) -> Element {
             // Tabs
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Tabs" }
-                
+
                 Card {
                     CardContent {
                         Tabs {
@@ -914,22 +914,22 @@ fn NavigationSection(current_page: Signal<i32>) -> Element {
                                 "Support"
                             }
                         }
-                        
+
                         div { class: "content mt-4",
                             match active_tab() {
-                                0 => rsx! { 
+                                0 => rsx! {
                                     Title { size: TitleSize::Is4, "Overview" }
                                     Content { "This tab shows an overview of the content." }
                                 },
-                                1 => rsx! { 
+                                1 => rsx! {
                                     Title { size: TitleSize::Is4, "Features" }
                                     Content { "Here you can learn about the key features." }
                                 },
-                                2 => rsx! { 
+                                2 => rsx! {
                                     Title { size: TitleSize::Is4, "Documentation" }
                                     Content { "Complete documentation and API reference." }
                                 },
-                                3 => rsx! { 
+                                3 => rsx! {
                                     Title { size: TitleSize::Is4, "Support" }
                                     Content { "Get help and support for your questions." }
                                 },
@@ -943,39 +943,39 @@ fn NavigationSection(current_page: Signal<i32>) -> Element {
             // Pagination
             div { class: "mt-6",
                 Title { size: TitleSize::Is3, "Pagination" }
-                
+
                 Card {
                     CardContent {
                         Content { "Current page: {current_page()}/10" }
-                        
+
                         Pagination {
                             size: BulmaSize::Medium,
                             alignment: PaginationAlignment::Centered,
-                            PaginationPrevious { 
+                            PaginationPrevious {
                                 disabled: current_page() <= 1,
-                                onclick: move |_| if current_page() > 1 { 
-                                    current_page.set(current_page() - 1) 
+                                onclick: move |_| if current_page() > 1 {
+                                    current_page.set(current_page() - 1)
                                 },
-                                "Previous" 
+                                "Previous"
                             }
-                            PaginationNext { 
+                            PaginationNext {
                                 disabled: current_page() >= 10,
-                                onclick: move |_| if current_page() < 10 { 
-                                    current_page.set(current_page() + 1) 
+                                onclick: move |_| if current_page() < 10 {
+                                    current_page.set(current_page() + 1)
                                 },
-                                "Next" 
+                                "Next"
                             }
                             PaginationList {
-                                PaginationLink { 
+                                PaginationLink {
                                     current: current_page() == 1,
                                     onclick: move |_| current_page.set(1),
-                                    "1" 
+                                    "1"
                                 }
                                 if current_page() > 3 {
                                     PaginationEllipsis {}
                                 }
                                 if current_page() > 2 && current_page() < 9 {
-                                    PaginationLink { 
+                                    PaginationLink {
                                         current: true,
                                         "{current_page()}"
                                     }
@@ -983,10 +983,10 @@ fn NavigationSection(current_page: Signal<i32>) -> Element {
                                 if current_page() < 8 {
                                     PaginationEllipsis {}
                                 }
-                                PaginationLink { 
+                                PaginationLink {
                                     current: current_page() == 10,
                                     onclick: move |_| current_page.set(10),
-                                    "10" 
+                                    "10"
                                 }
                             }
                         }

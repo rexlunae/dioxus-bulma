@@ -7,6 +7,8 @@ pub struct SectionProps {
     #[props(default)]
     pub size: Option<BulmaSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -33,6 +35,7 @@ pub fn Section(props: SectionProps) -> Element {
         section {
             class: "{final_class}",
             style: "{section_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

@@ -13,6 +13,8 @@ pub struct NotificationProps {
     #[props(default)]
     pub onclose: Option<EventHandler<MouseEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -40,6 +42,7 @@ pub fn Notification(props: NotificationProps) -> Element {
         div {
             class: "{final_class}",
             style: "{notification_style}",
+            id: props.id.clone(),
             if dismissible {
                 button {
                     class: "delete",

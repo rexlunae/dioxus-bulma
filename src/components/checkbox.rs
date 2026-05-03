@@ -14,6 +14,8 @@ pub struct CheckboxProps {
     #[props(default)]
     pub onchange: Option<EventHandler<FormEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -34,6 +36,7 @@ pub fn Checkbox(props: CheckboxProps) -> Element {
         label {
             class: "{final_class}",
             style: "{checkbox_style}",
+            id: props.id.clone(),
             input {
                 r#type: "checkbox",
                 checked: checked,

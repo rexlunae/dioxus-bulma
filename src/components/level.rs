@@ -6,6 +6,8 @@ pub struct LevelProps {
     #[props(default)]
     pub mobile: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -29,6 +31,7 @@ pub fn Level(props: LevelProps) -> Element {
         nav {
             class: "{final_class}",
             style: "{level_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -36,6 +39,8 @@ pub fn Level(props: LevelProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct LevelLeftProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -62,6 +67,8 @@ pub fn LevelLeft(props: LevelLeftProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct LevelRightProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -86,6 +93,8 @@ pub fn LevelRight(props: LevelRightProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct LevelItemProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

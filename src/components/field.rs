@@ -10,6 +10,8 @@ pub struct FieldProps {
     #[props(default)]
     pub horizontal: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -37,6 +39,7 @@ pub fn Field(props: FieldProps) -> Element {
         div {
             class: "{final_class}",
             style: "{field_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -44,6 +47,8 @@ pub fn Field(props: FieldProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct LabelProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -62,6 +67,7 @@ pub fn Label(props: LabelProps) -> Element {
         label {
             class: "{final_class}",
             style: "{label_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -71,6 +77,8 @@ pub fn Label(props: LabelProps) -> Element {
 pub struct HelpProps {
     #[props(default)]
     pub color: Option<crate::theme::BulmaColor>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -93,6 +101,7 @@ pub fn Help(props: HelpProps) -> Element {
         p {
             class: "{final_class}",
             style: "{help_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

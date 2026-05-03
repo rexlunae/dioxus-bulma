@@ -73,6 +73,8 @@ pub struct ColumnsProps {
     #[props(default)]
     pub vcentered: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -107,6 +109,7 @@ pub fn Columns(props: ColumnsProps) -> Element {
         div {
             class: "{final_class}",
             style: "{columns_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -120,6 +123,8 @@ pub struct ColumnProps {
     pub offset: Option<ColumnSize>,
     #[props(default)]
     pub narrow: Option<bool>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -147,6 +152,7 @@ pub fn Column(props: ColumnProps) -> Element {
         div {
             class: "{final_class}",
             style: "{column_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

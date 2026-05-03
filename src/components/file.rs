@@ -31,6 +31,8 @@ pub struct FileProps {
     #[props(default)]
     pub onchange: Option<EventHandler<FormEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -67,6 +69,7 @@ pub fn File(props: FileProps) -> Element {
         div {
             class: "{final_class}",
             style: "{file_style}",
+            id: props.id.clone(),
             label {
                 class: "file-label",
                 input {

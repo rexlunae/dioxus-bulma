@@ -4,6 +4,8 @@ use crate::utils::build_class;
 #[derive(Props, Clone, PartialEq)]
 pub struct MediaProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -21,6 +23,7 @@ pub fn Media(props: MediaProps) -> Element {
         article {
             class: "{final_class}",
             style: "{media_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -28,6 +31,8 @@ pub fn Media(props: MediaProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct MediaLeftProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -54,6 +59,8 @@ pub fn MediaLeft(props: MediaLeftProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct MediaRightProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -78,6 +85,8 @@ pub fn MediaRight(props: MediaRightProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct MediaContentProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

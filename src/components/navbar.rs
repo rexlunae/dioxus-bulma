@@ -15,6 +15,8 @@ pub struct NavbarProps {
     #[props(default)]
     pub spaced: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -45,6 +47,7 @@ pub fn Navbar(props: NavbarProps) -> Element {
         nav {
             class: "{final_class}",
             style: "{navbar_style}",
+            id: props.id.clone(),
             role: "navigation",
             "aria-label": "main navigation",
             {props.children}
@@ -54,6 +57,8 @@ pub fn Navbar(props: NavbarProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct NavbarBrandProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -81,6 +86,8 @@ pub fn NavbarBrand(props: NavbarBrandProps) -> Element {
 pub struct NavbarMenuProps {
     #[props(default = false)]
     pub active: bool,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -111,6 +118,8 @@ pub fn NavbarMenu(props: NavbarMenuProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct NavbarStartProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -135,6 +144,8 @@ pub fn NavbarStart(props: NavbarStartProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct NavbarEndProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -168,6 +179,8 @@ pub struct NavbarItemProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

@@ -7,6 +7,8 @@ pub struct ContentProps {
     #[props(default)]
     pub size: Option<BulmaSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -30,6 +32,7 @@ pub fn Content(props: ContentProps) -> Element {
         div {
             class: "{final_class}",
             style: "{content_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

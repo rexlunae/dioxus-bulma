@@ -17,6 +17,8 @@ pub struct TableProps {
     #[props(default)]
     pub size: Option<BulmaSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -50,6 +52,7 @@ pub fn Table(props: TableProps) -> Element {
         table {
             class: "{final_class}",
             style: "{table_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -57,6 +60,8 @@ pub fn Table(props: TableProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TableContainerProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

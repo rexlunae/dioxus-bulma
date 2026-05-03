@@ -28,6 +28,8 @@ pub struct PaginationProps {
     #[props(default)]
     pub rounded: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -55,6 +57,7 @@ pub fn Pagination(props: PaginationProps) -> Element {
         nav {
             class: "{final_class}",
             style: "{pagination_style}",
+            id: props.id.clone(),
             role: "navigation",
             "aria-label": "pagination",
             {props.children}
@@ -72,8 +75,10 @@ pub struct PaginationPreviousProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -91,7 +96,7 @@ pub fn PaginationPrevious(props: PaginationPreviousProps) -> Element {
     let style = props.style.as_deref().unwrap_or("");
 
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             Link {
                 to: nav_target,
@@ -136,8 +141,10 @@ pub struct PaginationNextProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -155,7 +162,7 @@ pub fn PaginationNext(props: PaginationNextProps) -> Element {
     let style = props.style.as_deref().unwrap_or("");
 
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             Link {
                 to: nav_target,
@@ -193,6 +200,8 @@ pub fn PaginationNext(props: PaginationNextProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct PaginationListProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -227,8 +236,10 @@ pub struct PaginationLinkProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -251,7 +262,7 @@ pub fn PaginationLink(props: PaginationLinkProps) -> Element {
     let style = props.style.as_deref().unwrap_or("");
 
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             li {
                 Link {
@@ -294,6 +305,8 @@ pub fn PaginationLink(props: PaginationLinkProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct PaginationEllipsisProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

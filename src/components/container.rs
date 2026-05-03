@@ -27,6 +27,8 @@ pub struct ContainerProps {
     #[props(default)]
     pub breakpoint: Option<ContainerBreakpoint>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -52,6 +54,7 @@ pub fn Container(props: ContainerProps) -> Element {
         div {
             class: "{final_class}",
             style: "{container_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

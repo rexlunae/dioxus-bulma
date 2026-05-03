@@ -42,6 +42,8 @@ pub struct TitleProps {
     #[props(default)]
     pub spaced: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -68,6 +70,7 @@ pub fn Title(props: TitleProps) -> Element {
             h1 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -75,6 +78,7 @@ pub fn Title(props: TitleProps) -> Element {
             h2 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -82,6 +86,7 @@ pub fn Title(props: TitleProps) -> Element {
             h3 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -89,6 +94,7 @@ pub fn Title(props: TitleProps) -> Element {
             h4 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -96,6 +102,7 @@ pub fn Title(props: TitleProps) -> Element {
             h5 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -103,6 +110,7 @@ pub fn Title(props: TitleProps) -> Element {
             h6 {
                 class: "{final_class}",
                 style: "{title_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -113,6 +121,8 @@ pub fn Title(props: TitleProps) -> Element {
 pub struct SubtitleProps {
     #[props(default = TitleSize::Is5)]
     pub size: TitleSize,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -137,6 +147,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h1 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -144,6 +155,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h2 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -151,6 +163,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h3 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -158,6 +171,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h4 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -165,6 +179,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h5 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },
@@ -172,6 +187,7 @@ pub fn Subtitle(props: SubtitleProps) -> Element {
             h6 {
                 class: "{final_class}",
                 style: "{subtitle_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         },

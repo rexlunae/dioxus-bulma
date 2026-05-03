@@ -49,6 +49,8 @@ pub struct TabsProps {
     #[props(default)]
     pub fullwidth: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub css_style: Option<String>,
@@ -84,6 +86,7 @@ pub fn Tabs(props: TabsProps) -> Element {
         div {
             class: "{final_class}",
             style: "{tabs_style}",
+            id: props.id.clone(),
             ul {
                 {props.children}
             }
@@ -103,8 +106,10 @@ pub struct TabProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -130,6 +135,7 @@ pub fn Tab(props: TabProps) -> Element {
         li {
             class: "{final_class}",
             style: "{tab_style}",
+            id: props.id.clone(),
             
             if let Some(href) = props.href {
                 if !disabled {

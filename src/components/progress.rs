@@ -13,6 +13,8 @@ pub struct ProgressProps {
     #[props(default)]
     pub size: Option<BulmaSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -39,6 +41,7 @@ pub fn Progress(props: ProgressProps) -> Element {
         progress {
             class: "{final_class}",
             style: "{progress_style}",
+            id: props.id.clone(),
             value: value_str.as_deref(),
             max: "{max_str}",
             if props.value.is_some() {

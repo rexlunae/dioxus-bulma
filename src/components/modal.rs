@@ -8,6 +8,8 @@ pub struct ModalProps {
     #[props(default)]
     pub onclose: Option<EventHandler<MouseEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -29,6 +31,7 @@ pub fn Modal(props: ModalProps) -> Element {
         div {
             class: "{final_class}",
             style: "{modal_style}",
+            id: props.id.clone(),
             div {
                 class: "modal-background",
                 onclick: move |evt| {
@@ -44,6 +47,8 @@ pub fn Modal(props: ModalProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct ModalCardProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -71,6 +76,8 @@ pub fn ModalCard(props: ModalCardProps) -> Element {
 pub struct ModalCardHeadProps {
     #[props(default)]
     pub onclose: Option<EventHandler<MouseEvent>>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -106,6 +113,8 @@ pub fn ModalCardHead(props: ModalCardHeadProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct ModalCardBodyProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -130,6 +139,8 @@ pub fn ModalCardBody(props: ModalCardBodyProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct ModalCardFootProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

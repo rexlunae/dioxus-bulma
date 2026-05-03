@@ -8,6 +8,7 @@ pub mod media;
 pub mod tile;
 
 // Elements
+pub mod box_;
 pub mod button;
 pub mod buttons;
 pub mod content;
@@ -54,6 +55,7 @@ pub use media::*;
 pub use tile::*;
 
 // Elements
+pub use box_::*;
 pub use button::*;
 pub use buttons::*;
 pub use content::*;

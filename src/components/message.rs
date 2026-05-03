@@ -9,6 +9,8 @@ pub struct MessageProps {
     #[props(default)]
     pub size: Option<BulmaSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -33,6 +35,7 @@ pub fn Message(props: MessageProps) -> Element {
         article {
             class: "{final_class}",
             style: "{message_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -44,6 +47,8 @@ pub struct MessageHeaderProps {
     pub closable: Option<bool>,
     #[props(default)]
     pub onclose: Option<EventHandler<MouseEvent>>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -64,6 +69,7 @@ pub fn MessageHeader(props: MessageHeaderProps) -> Element {
         div {
             class: "{final_class}",
             style: "{header_style}",
+            id: props.id.clone(),
             p { {props.children} }
             if closable {
                 button {
@@ -83,6 +89,8 @@ pub fn MessageHeader(props: MessageHeaderProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct MessageBodyProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -100,6 +108,7 @@ pub fn MessageBody(props: MessageBodyProps) -> Element {
         div {
             class: "{final_class}",
             style: "{body_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

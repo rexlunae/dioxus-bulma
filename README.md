@@ -44,6 +44,31 @@ dioxus-bulma = { version = "0.7", features = ["router"] }
 dioxus-router = "0.7"
 ```
 
+When the `router` feature is enabled, components like `Button`, `MenuItem`,
+`BreadcrumbItem`, `DropdownItem`, `PanelBlock`, `PaginationLink`,
+`PaginationPrevious`, `PaginationNext` and `Tab` accept a `to` prop that takes
+any `Routable` route (or anything else that implements
+`Into<NavigationTarget>`) directly:
+
+```rust,ignore
+MenuItem { to: Route::DeviceList, "Devices" }       // ✅ works
+BreadcrumbItem { to: Route::Home, "Home" }          // ✅ works
+```
+
+This is enabled by the [`MaybeNav`](https://docs.rs/dioxus-bulma/latest/dioxus_bulma/struct.MaybeNav.html)
+wrapper plus `#[props(into)]`.
+
+## Customizing rendered HTML
+
+Every component exposes an `id: Option<String>` prop that is forwarded to the
+rendered root element. This makes it easy for tooling, end-to-end test
+frameworks (Playwright, Cypress) and CSS to target individual components:
+
+```rust,ignore
+Button { id: "save-button", color: BulmaColor::Primary, "Save" }
+Notification { id: "save-success", color: BulmaColor::Success, "Saved!" }
+```
+
 ## Dioxus 0.7 Compatibility
 
 This library is fully compatible with Dioxus 0.7. If you're upgrading from Dioxus 0.6, see the [Upgrade Guide](#upgrade-guide) section below.
@@ -95,17 +120,22 @@ The library provides two import patterns:
 ```rust
 use dioxus::prelude::*;
 use dioxus_bulma::prelude::*;
-use dioxus_bulma::components::{Title, Subtitle}; // Import Title/Subtitle explicitly
+// Bulma's typography components are exposed as `BulmaTitle`/`BulmaSubtitle` via
+// the prelude to avoid colliding with Dioxus 0.7's built-in document `Title`.
 ```
 
-**Alternative: Component module**
+**Alternative: Component module (use the original Bulma names)**
 ```rust
 use dioxus::prelude::*;
 use dioxus_bulma::prelude::*;
-use dioxus_bulma::components::*;
+use dioxus_bulma::components::{Title, Subtitle};
 ```
 
-> **Note**: `Title` and `Subtitle` must be explicitly imported to avoid conflicts with Dioxus 0.7's built-in document components.
+> **Note**: Dioxus 0.7's `dioxus::prelude` already contains a `Title`
+> *document* component that mutates the page `<title>`. Bulma's typography
+> components are therefore re-exported under the names `BulmaTitle` and
+> `BulmaSubtitle` from the prelude. The original `Title`/`Subtitle` names are
+> still available via `dioxus_bulma::components`.
 
 ### 3. Building Forms
 
@@ -391,7 +421,9 @@ fn AdvancedDemo() -> Element {
 
 ### Elements
 - `Button` - Full-featured buttons with colors, sizes, states, and variants
-- `Title` / `Subtitle` - Typography components with proper heading levels
+- `BulmaBox` (also exported as `Box` from `dioxus_bulma::components`) - The Bulma `box` element, a simple bordered container
+- `Block` - Bulma `block` spacer for consistent vertical rhythm
+- `Title` / `Subtitle` - Typography components with proper heading levels (re-exported as `BulmaTitle` / `BulmaSubtitle` from the prelude)
 - `Content` - Rich content container with typography styles
 - `Delete` - Delete button with size variants
 - `Icon` - Icon wrapper with size and color options

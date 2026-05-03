@@ -18,6 +18,8 @@ pub struct DropdownProps {
     #[props(default)]
     pub up: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -47,6 +49,7 @@ pub fn Dropdown(props: DropdownProps) -> Element {
         div {
             class: "{final_class}",
             style: "{dropdown_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -56,6 +59,8 @@ pub fn Dropdown(props: DropdownProps) -> Element {
 pub struct DropdownTriggerProps {
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -74,6 +79,7 @@ pub fn DropdownTrigger(props: DropdownTriggerProps) -> Element {
         div {
             class: "{final_class}",
             style: "{trigger_style}",
+            id: props.id.clone(),
             onclick: move |evt| {
                 if let Some(handler) = &props.onclick {
                     handler.call(evt);
@@ -86,6 +92,8 @@ pub fn DropdownTrigger(props: DropdownTriggerProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct DropdownMenuProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -104,6 +112,7 @@ pub fn DropdownMenu(props: DropdownMenuProps) -> Element {
         div {
             class: "{final_class}",
             style: "{menu_style}",
+            id: props.id.clone(),
             role: "menu",
             div {
                 class: "dropdown-content",
@@ -123,8 +132,10 @@ pub struct DropdownItemProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -146,12 +157,13 @@ pub fn DropdownItem(props: DropdownItemProps) -> Element {
     let item_style = props.style.as_deref().unwrap_or("");
 
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             Link {
                 to: nav_target,
                 class: "{final_class}",
                 style: "{item_style}",
+                id: props.id.clone(),
                 onclick: move |evt| {
                     if let Some(handler) = &props.onclick {
                         handler.call(evt);
@@ -167,6 +179,7 @@ pub fn DropdownItem(props: DropdownItemProps) -> Element {
             a {
                 class: "{final_class}",
                 style: "{item_style}",
+                id: props.id.clone(),
                 href: "{href}",
                 onclick: move |evt| {
                     if let Some(handler) = &props.onclick {
@@ -179,6 +192,7 @@ pub fn DropdownItem(props: DropdownItemProps) -> Element {
             div {
                 class: "{final_class}",
                 style: "{item_style}",
+                id: props.id.clone(),
                 onclick: move |evt| {
                     if let Some(handler) = &props.onclick {
                         handler.call(evt);
@@ -192,6 +206,8 @@ pub fn DropdownItem(props: DropdownItemProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct DropdownDividerProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

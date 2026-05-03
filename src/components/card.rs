@@ -4,6 +4,8 @@ use crate::utils::build_class;
 #[derive(Props, Clone, PartialEq)]
 pub struct CardProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -21,6 +23,7 @@ pub fn Card(props: CardProps) -> Element {
         div {
             class: "{final_class}",
             style: "{card_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -28,6 +31,8 @@ pub fn Card(props: CardProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct CardHeaderProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -54,6 +59,8 @@ pub fn CardHeader(props: CardHeaderProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct CardHeaderTitleProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -79,6 +86,8 @@ pub fn CardHeaderTitle(props: CardHeaderTitleProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct CardContentProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -103,6 +112,8 @@ pub fn CardContent(props: CardContentProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct CardFooterProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -132,6 +143,8 @@ pub struct CardFooterItemProps {
     pub href: Option<String>,
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

@@ -15,6 +15,8 @@ pub struct ControlProps {
     #[props(default)]
     pub expanded: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -46,6 +48,7 @@ pub fn Control(props: ControlProps) -> Element {
         div {
             class: "{final_class}",
             style: "{control_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

@@ -17,6 +17,8 @@ pub struct TagProps {
     #[props(default)]
     pub ondelete: Option<EventHandler<MouseEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -48,6 +50,7 @@ pub fn Tag(props: TagProps) -> Element {
             button {
                 class: "{final_class}",
                 style: "{tag_style}",
+                id: props.id.clone(),
                 onclick: move |evt| {
                     if let Some(handler) = &props.ondelete {
                         handler.call(evt);
@@ -60,6 +63,7 @@ pub fn Tag(props: TagProps) -> Element {
             span {
                 class: "{final_class}",
                 style: "{tag_style}",
+                id: props.id.clone(),
                 {props.children}
             }
         }
@@ -70,6 +74,8 @@ pub fn Tag(props: TagProps) -> Element {
 pub struct TagsProps {
     #[props(default)]
     pub addons: Option<bool>,
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -94,6 +100,7 @@ pub fn Tags(props: TagsProps) -> Element {
         div {
             class: "{final_class}",
             style: "{tags_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

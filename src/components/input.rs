@@ -52,6 +52,8 @@ pub struct InputProps {
     #[props(default)]
     pub onblur: Option<EventHandler<FocusEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -85,6 +87,7 @@ pub fn Input(props: InputProps) -> Element {
             r#type: props.input_type.as_str(),
             class: "{final_class}",
             style: "{input_style}",
+            id: props.id.clone(),
             value: props.value.as_deref().unwrap_or(""),
             placeholder: props.placeholder.as_deref().unwrap_or(""),
             disabled: disabled,

@@ -9,6 +9,8 @@ pub struct DeleteProps {
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -31,6 +33,7 @@ pub fn Delete(props: DeleteProps) -> Element {
         button {
             class: "{final_class}",
             style: "{delete_style}",
+            id: props.id.clone(),
             "aria-label": "delete",
             onclick: move |evt| {
                 if let Some(handler) = &props.onclick {

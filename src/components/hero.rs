@@ -11,6 +11,8 @@ pub struct HeroProps {
     #[props(default)]
     pub bold: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -37,6 +39,7 @@ pub fn Hero(props: HeroProps) -> Element {
         section {
             class: "{final_class}",
             style: "{hero_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }
@@ -44,6 +47,8 @@ pub fn Hero(props: HeroProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct HeroBodyProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -70,6 +75,8 @@ pub fn HeroBody(props: HeroBodyProps) -> Element {
 #[derive(Props, Clone, PartialEq)]
 pub struct HeroHeadProps {
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -94,6 +101,8 @@ pub fn HeroHead(props: HeroHeadProps) -> Element {
 
 #[derive(Props, Clone, PartialEq)]
 pub struct HeroFootProps {
+    #[props(default)]
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]

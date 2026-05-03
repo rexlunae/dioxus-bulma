@@ -23,13 +23,15 @@ pub struct ButtonProps {
     #[props(default)]
     pub onclick: Option<EventHandler<MouseEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
     /// If present, generate the button as a Link component using the dioxus router
     #[cfg(feature = "router")]
-    #[props(default)]
-    pub to: Option<NavigationTarget>,
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     pub children: Element,
 }
 
@@ -61,12 +63,13 @@ pub fn Button(props: ButtonProps) -> Element {
     let button_style = props.style.as_deref().unwrap_or("");
 
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             Link {
                 to: nav_target,
                 class: "{final_class}",
                 style: "{button_style}",
+                id: props.id.clone(),
                 onclick: move |evt| {
                     if !disabled && !loading {
                         if let Some(handler) = &props.onclick {
@@ -83,6 +86,7 @@ pub fn Button(props: ButtonProps) -> Element {
         button {
             class: "{final_class}",
             style: "{button_style}",
+            id: props.id.clone(),
             disabled: disabled,
             onclick: move |evt| {
                 if !disabled && !loading {

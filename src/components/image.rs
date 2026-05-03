@@ -65,6 +65,8 @@ pub struct ImageProps {
     #[props(default)]
     pub rounded: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -89,6 +91,7 @@ pub fn Image(props: ImageProps) -> Element {
         figure {
             class: "{final_class}",
             style: "{image_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

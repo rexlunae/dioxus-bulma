@@ -21,6 +21,8 @@ pub struct SelectProps {
     #[props(default)]
     pub onchange: Option<EventHandler<FormEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -52,6 +54,7 @@ pub fn Select(props: SelectProps) -> Element {
         div {
             class: "{final_class}",
             style: "{select_style}",
+            id: props.id.clone(),
             select {
                 value: props.value.as_deref().unwrap_or(""),
                 disabled: disabled,
@@ -76,6 +79,8 @@ pub struct OptionProps {
     #[props(default)]
     pub disabled: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -96,6 +101,7 @@ pub fn Option(props: OptionProps) -> Element {
             disabled: disabled,
             class: "{option_class}",
             style: "{option_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

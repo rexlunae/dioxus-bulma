@@ -12,6 +12,8 @@ pub struct RadioProps {
     #[props(default)]
     pub onchange: Option<EventHandler<FormEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -32,6 +34,7 @@ pub fn Radio(props: RadioProps) -> Element {
         label {
             class: "{final_class}",
             style: "{radio_style}",
+            id: props.id.clone(),
             input {
                 r#type: "radio",
                 name: "{props.name}",

@@ -47,6 +47,8 @@ pub struct BreadcrumbProps {
     #[props(default)]
     pub separator: Option<BreadcrumbSeparator>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -73,6 +75,7 @@ pub fn Breadcrumb(props: BreadcrumbProps) -> Element {
         nav {
             class: "{final_class}",
             style: "{breadcrumb_style}",
+            id: props.id.clone(),
             "aria-label": "breadcrumbs",
             ul {
                 {props.children}
@@ -91,8 +94,10 @@ pub struct BreadcrumbItemProps {
     pub onclick: Option<EventHandler<MouseEvent>>,
     /// If present, use router navigation instead of href
     #[cfg(feature = "router")]
+    #[props(default, into)]
+    pub to: crate::router_helpers::MaybeNav,
     #[props(default)]
-    pub to: Option<NavigationTarget>,
+    pub id: Option<String>,
     #[props(default)]
     pub class: Option<String>,
     #[props(default)]
@@ -115,11 +120,12 @@ pub fn BreadcrumbItem(props: BreadcrumbItemProps) -> Element {
 
     // Handle router navigation if feature is enabled
     #[cfg(feature = "router")]
-    if let Some(nav_target) = props.to {
+    if let Some(nav_target) = props.to.0 {
         return rsx! {
             li {
                 class: "{final_class}",
                 style: "{item_style}",
+                id: props.id.clone(),
                 Link {
                     to: nav_target,
                     onclick: move |evt| {
@@ -137,6 +143,7 @@ pub fn BreadcrumbItem(props: BreadcrumbItemProps) -> Element {
         li {
             class: "{final_class}",
             style: "{item_style}",
+            id: props.id.clone(),
             if let Some(href) = props.href {
                 a {
                     href: "{href}",

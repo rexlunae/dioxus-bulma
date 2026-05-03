@@ -9,6 +9,8 @@ pub struct IconProps {
     #[props(default)]
     pub color: Option<BulmaColor>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -33,6 +35,7 @@ pub fn Icon(props: IconProps) -> Element {
         span {
             class: "{final_class}",
             style: "{icon_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

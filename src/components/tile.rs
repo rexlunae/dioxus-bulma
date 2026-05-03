@@ -49,6 +49,8 @@ pub struct TileProps {
     #[props(default)]
     pub size: Option<TileSize>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -79,6 +81,7 @@ pub fn Tile(props: TileProps) -> Element {
         div {
             class: "{final_class}",
             style: "{tile_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

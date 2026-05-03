@@ -28,6 +28,8 @@ pub struct ButtonsProps {
     #[props(default)]
     pub addons: Option<bool>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -56,6 +58,7 @@ pub fn Buttons(props: ButtonsProps) -> Element {
         div {
             class: "{final_class}",
             style: "{buttons_style}",
+            id: props.id.clone(),
             {props.children}
         }
     }

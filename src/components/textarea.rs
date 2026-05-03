@@ -31,6 +31,8 @@ pub struct TextareaProps {
     #[props(default)]
     pub onblur: Option<EventHandler<FocusEvent>>,
     #[props(default)]
+    pub id: Option<String>,
+    #[props(default)]
     pub class: Option<String>,
     #[props(default)]
     pub style: Option<String>,
@@ -58,6 +60,7 @@ pub fn Textarea(props: TextareaProps) -> Element {
         textarea {
             class: "{final_class}",
             style: "{textarea_style}",
+            id: props.id.clone(),
             value: props.value.as_deref().unwrap_or(""),
             placeholder: props.placeholder.as_deref().unwrap_or(""),
             disabled: disabled,

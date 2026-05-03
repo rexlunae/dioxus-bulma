@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.3] - 2026-05-03
+
+### Added
+
+- **Every component now exposes an `id: Option<String>` prop** that is
+  forwarded to the rendered root element. This lets tooling (Playwright,
+  Cypress, accessibility tooling, custom CSS) target individual components.
+- New [`BulmaBox`] (also re-exported as `Box` from `dioxus_bulma::components`)
+  component implementing Bulma's [`box`](https://bulma.io/documentation/elements/box/)
+  element. Closes [#8](https://github.com/rexlunae/dioxus-bulma/issues/8).
+- New `Block` helper component implementing Bulma's
+  [`block`](https://bulma.io/documentation/elements/block/) spacer.
+- New [`MaybeNav`] wrapper plus `#[props(into)]` on every router-enabled
+  component's `to` prop, so users can now pass a `Routable` route directly
+  (`MenuItem { to: Route::DeviceList, "Devices" }`) without having to write
+  `Some(Route::DeviceList.into())`. Closes
+  [#6](https://github.com/rexlunae/dioxus-bulma/issues/6).
+- New top-level [`AGENTS.md`](AGENTS.md) document aimed at AI coding agents
+  (Copilot, Claude Code, Cursor, ChatGPT, …) describing the crate's
+  conventions, gotchas, and the full component inventory so generated code
+  uses the available components instead of reinventing them with raw HTML.
+- New regression tests `tests/id_prop_test.rs` and
+  `tests/router_to_prop_test.rs`.
+
+### Changed
+
+- The prelude now exports Bulma's typography components as **`BulmaTitle`**
+  and **`BulmaSubtitle`** instead of `Title`/`Subtitle`, to coexist cleanly
+  with Dioxus 0.7's document `Title` component. The original
+  `Title`/`Subtitle` names remain accessible via `dioxus_bulma::components`.
+  Closes [#7](https://github.com/rexlunae/dioxus-bulma/issues/7).
+- README updated to describe `id` support, the new `BulmaBox`/`Block`
+  components, the new prelude naming, and the router `to` ergonomics.
+
+### Fixed
+
+- Confirmed the `router` feature builds cleanly on Dioxus 0.7
+  ([#5](https://github.com/rexlunae/dioxus-bulma/issues/5)) — the published
+  `0.7.2` version on crates.io still imported `dioxus_router::prelude::*`
+  which had moved; this release re-publishes a working router build.
+
+[`BulmaBox`]: https://docs.rs/dioxus-bulma/latest/dioxus_bulma/components/struct.BulmaBox.html
+[`MaybeNav`]: https://docs.rs/dioxus-bulma/latest/dioxus_bulma/struct.MaybeNav.html
+
 ## [0.7.2] - 2025-01-01
 
 ### Changed

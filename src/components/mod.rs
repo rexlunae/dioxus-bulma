@@ -55,6 +55,11 @@ pub use media::*;
 pub use tile::*;
 
 // Elements
+/// Convenience alias of [`BulmaBox`] using its native Bulma name.
+///
+/// Note: this collides with `std::boxed::Box` if both are glob-imported.
+/// Most users should prefer [`BulmaBox`].
+pub use box_::BulmaBox as Box;
 pub use box_::*;
 pub use button::*;
 pub use buttons::*;
